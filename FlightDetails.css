@@ -1,0 +1,33 @@
+body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: #f2f6e9;
+  }
+  .header {
+    overflow: hidden;
+    background-color: #08236e;
+    padding: 10px 5px;
+  }
+  .header a.logo {
+    margin-left: 1em !important;
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .header a.logo span{
+    font-size: 23px;
+    font-weight: bold;
+    color: #079dd8;
+  }
+  .leadstable{
+    background-color: #ffffff;
+    padding: 10px 5px;
+    align-items: center;
+    border-collapse: separate;
+    border-spacing: 1px 1px;
+    border-top: 1px solid #78858e;
+    border-bottom: 1px solid #78858e;
+    table-layout: fixed;
+    box-sizing: border-box;
+  }

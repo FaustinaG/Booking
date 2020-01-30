@@ -1,0 +1,120 @@
+body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: #f2f6e9;
+  }
+  .header {
+    overflow: hidden;
+    background-color: #08236e;
+    padding: 10px 5px;
+  }
+  .header a.logo {
+    margin-left: 1em !important;
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .header a.logo span{
+    font-size: 23px;
+    font-weight: bold;
+    color: #079dd8;
+  }
+  .navbar {
+    background:#eeeeee;
+    padding: 10px 5px;
+  }
+  .nav-link,
+  .navbar-brand {
+    color: #000000;
+    cursor: pointer;
+  }
+  .nav-link {
+    margin-left: 1em !important;
+  }
+  .nav-link:hover {
+    color: rgb(9, 105, 41);
+  }
+  .navbar-collapse {
+    justify-content: flex-start;
+  }
+  .page-header{
+    background-image: url('header-background.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100%;
+  }
+  .description{
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+  .rowoptions {
+    background-color: #f8be00;
+    padding: 15px 10px;
+    align-items: center;
+  }
+  .cover{
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .footer{
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #eeeeee;;
+    text-align: center;
+    padding: 15px 10px;
+  }
+  .footer-link {
+    margin-left: 2em !important;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(29, 187, 250);
+  }
+  .footer-description{
+    font-size: 13px;
+    color: rgb(29, 187, 250);
+  }
+  .container-inside{
+    background-color: #f8be00;
+    padding: 10px 5px;
+    align-items: center;
+  }
+  .leadstable{
+    background-color: #ffffff;
+    padding: 10px 5px;
+    align-items: center;
+  }
+  .icon{
+    padding: 5px 8px;
+  }
+  .getflights{
+    padding: 8px 8px;
+  }
+  .One-way:active{
+    display: block;
+  }
+  .btnnavigation{
+    background-color: #f8be00;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .btnnavigation:active{
+    text-decoration: underline;
+  }

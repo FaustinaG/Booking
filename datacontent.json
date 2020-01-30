@@ -1,0 +1,68 @@
+[
+    {
+        "Flight Name": "Spice Jet",
+        "Departure": "21:45",
+        "Arrival": "23:45",
+        "Duration" : "2h 00m",
+        "Journey Date" : "01-22-2020",
+        "From" : "Chennai",
+        "To" :"Delhi",
+        "Price": "1250.00",
+        "Seat Availability" : 10
+    },
+    {
+        "Flight Name": "Go Air",
+        "Departure": "07:25",
+        "Arrival": "09:25",
+        "Duration" : "2h 00m",
+        "Journey Date" : "01-24-2020",
+        "From" : "Delhi",
+        "To" :"Chennai",
+        "Price": "1750.00",
+        "Seat Availability" : 15
+    },
+    {
+        "Flight Name": "Air India",
+        "Departure": "21:35",
+        "Arrival": "23:20",
+        "Duration" : "1h 45m",
+        "Journey Date" : "01-23-2020",
+        "From" : "Mangalore",
+        "To" :"Cochin",
+        "Price": "5600.00",
+        "Seat Availability" : 16
+    },
+    {
+        "Flight Name": "Spice Jet",
+        "Departure": "5:00",
+        "Arrival": "6:50",
+        "Duration" : "1h 50m",
+        "Journey Date" : "01-24-2020",
+        "From" : "Cochin",
+        "To" :"Mangalore",
+        "Price": "6000.00",
+        "Seat Availability" : 12
+    },
+    {
+        "Flight Name": "Vistara",
+        "Departure": "20:45",
+        "Arrival": "22:35",
+        "Duration" : "1h 50m",
+        "Journey Date" : "01-23-2020",
+        "From" : "Bangalore",
+        "To" :"Hyderabad",
+        "Price": "2100.00",
+        "Seat Availability" : 15
+    },
+    {
+        "Flight Name": "Air India",
+        "Departure": "05:40",
+        "Arrival": "07:30",
+        "Duration" : "1h 50m",
+        "Journey Date" : "01-25-2020",
+        "From" : "Hyderabad",
+        "To" :"Bangalore",
+        "Price": "2300.00",
+        "Seat Availability" : 17
+    }
+]
