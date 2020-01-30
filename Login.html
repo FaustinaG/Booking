@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Flight Details</title>
+    <title>Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -20,19 +20,17 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <div class="header">
         <a href="#" class="logo">Booking<span>.com</span></a>
-      </div>
-    <div class="container">
-        <label for = "From-City">From : </label>
-        <input class="form-control" type="text" id="From-City" />
-        <label for = "To-City">To : </label>
-        <input class="form-control" type="text" id="To-City" />
-        <label for = "Passengers">Total Number of Passengers : </label>
-        <input class="form-control" type="text" id="Passengers" />
-        <label for = "Price">Total Fare : </label>
-        <input class="form-control" type="text" id="Price" />
-        <br>
-        <button class="btn btn-primary" id="book">Book Tickets</button>
     </div>
-    <script src="BookFlight.js"></script>
-   </body>
+    <div class="container">
+        <label for = "LoginName">Login Name : </label>
+        <input class="form-control" type="text" id="UserName" />
+        <label for = "Password">Password : </label>
+        <input class="form-control" type="text" id="Password" />
+        <br>
+        <button class="btn btn-primary" id="Login">Login</button>
+        <br>
+        <a class="link" href="RegisterLogin.html"><b>Register New User</b></a>
+    </div>
+    <script src="Login.js"></script>
+    </body>
    </html>

@@ -154,9 +154,8 @@ $.getJSON(url, function (data) {
 
 
         $("#flighttable").click(function(e) {
-            //alert((e.target.id));
             sessionStorage.setItem( 'FlightIdobject', e.target.id );
-            window.location="BookFlight.html";
+            window.location="Login.html";
         });
 
     })
