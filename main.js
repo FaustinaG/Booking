@@ -65,5 +65,10 @@ $(document).ready(function(){
         window.location="FlightDetails.html";
     })
 
+    $("#CancelTicket").click(function(){
+        var Status = "Cancelled";
+        sessionStorage.setItem( 'Statusobject', Status );
+        window.location="Login.html";
+    })
 
   })

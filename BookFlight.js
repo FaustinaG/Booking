@@ -2,7 +2,7 @@ $(document).ready(function(){
     var FlightId = sessionStorage.getItem('FlightIdobject');
     var Passengers = sessionStorage.getItem('Passengersobject');
     document.getElementById("Passengers").value = Passengers;
-
+    var UserId = sessionStorage.getItem('UserIdobject');
 
     var url = "http://localhost:60483/api/FlightDetail/GetFlightsById/";
 $.getJSON(url+FlightId, function (data) {
@@ -45,9 +45,23 @@ $.getJSON(url+FlightId, function (data) {
             data: JSON.stringify(ticket),
             contentType: "application/json",
             success: function (data) {
-                callback(data);
+                var ticketid = data.id;
+                var history = {
+                    UserLoginId : UserId,
+                    TicketDetailId : ticketid
+                }
+                    $.ajax({
+                        url: "http://localhost:60483/api/UserTicketHistory/PostUserTicketHistory",
+                        type: "POST",
+                        data: JSON.stringify(history),
+                        contentType: "application/json",
+                        success: function (data) {
+                            callback(data);
+                        }
+                    })
+                window.location="Result.html";
             }
         })
-        window.location="Result.html";
+        
     })
 })

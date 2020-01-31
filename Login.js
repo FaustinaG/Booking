@@ -3,16 +3,25 @@ $(document).ready(function(){
     $("#Login").click(function(){
     var UserName = document.getElementById("UserName").value;
     var Password = document.getElementById("Password").value;
+    var Status = sessionStorage.getItem('Statusobject');
     var url = "http://localhost:60483/api/UserLogin/GetUser/"+UserName+"/"+Password;
-    $.getJSON(url, function (data) {
-        if(jQuery.isEmptyObject(data))
+    $.get(url, function (data) {
+        if(data>0)
         {
-            alert("Invalid Login Credentails");
-            return false;
+            sessionStorage.setItem( 'UserIdobject', data );
+            if(Status === "Booking")
+            {
+                window.location="BookFlight.html";
+            }
+            else
+            {
+                window.location="CancelFlight.html";
+            }
         }
         else
         {
-            window.location="BookFlight.html";
+            alert("Invalid Login Credentails");
+            return false;
         }
     })
 })
