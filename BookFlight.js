@@ -26,6 +26,18 @@ $.getJSON(url+FlightId, function (data) {
                 var Price = flight_data[i][col[j]];
                 document.getElementById("Price").value = (Price*Passengers);
             }
+            else if(col[j] === "FromCity")
+            {
+                document.getElementById("From-City").value = flight_data[i][col[j]];
+            }
+            else if(col[j] === "ToCity")
+            {
+                document.getElementById("To-City").value = flight_data[i][col[j]];
+            }
+            else if(col[j] === "FlightName")
+            {
+                document.getElementById("FlightName").value = flight_data[i][col[j]];
+            }
     }
     } 
 })

@@ -24,8 +24,30 @@ $(document).ready(function(){
     $("#Return").click(function(){
         returnDate.style.display = 'block';
     })
-    $("#departure-date").datepicker();
-    $("#return-date").datepicker();
+    $("#departure-date").datepicker({
+        onSelect: function(dateText, inst) {
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                $('#departure-date').val('');
+                $(inst).datepicker('show');
+            }
+        }
+    });
+    $("#return-date").datepicker({
+        onSelect: function(dateText, inst) {
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                $('#return-date').val('');
+                $(inst).datepicker('show');
+            }
+        }
+    });
     var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
 
     $("#From-City").autocomplete({
@@ -71,9 +93,9 @@ $.getJSON(url, function (data) {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
-            if(col[j] === "FlightName")
+            if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j-1]]+'">'+flight_data[i][col[j]]+'</a>';
+                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j]]+'"><button><b>Book</b></button></a>';
             }
             else
             {
@@ -85,12 +107,17 @@ $.getJSON(url, function (data) {
     var divContainer = document.getElementById("flighttable");
     divContainer.innerHTML = "<b>Best Flights</b>";
     divContainer.appendChild(table);
-    $('#flighttable th:nth-child(1), #flighttable td:nth-child(1)').remove();
-    $('#flighttable th:last-child, #flighttable td:last-child').remove();
+    $('#flighttable th:last-child').hide();
     var passengers = document.getElementById("PassengersCount").value;
     sessionStorage.setItem( 'Passengersobject', passengers );
    
 })
+$("#flighttable").click(function(e) {
+    var Status = "Booking";
+    sessionStorage.setItem( 'Statusobject', Status );
+    sessionStorage.setItem( 'FlightIdobject', e.target.id );
+    window.location="Login.html";
+});
     
 
     $("#flip").click(function(){
@@ -132,9 +159,9 @@ $.getJSON(url, function (data) {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-                if(col[j] === "FlightName")
+                if(col[j] === "Id")
                 {
-                    tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j-1]]+'">'+flight_data[i][col[j]]+'</a>';
+                    tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j]]+'"><button><b>Book</b></button></a>';
                 }
                 else
                 {
@@ -145,9 +172,29 @@ $.getJSON(url, function (data) {
         }
         var divContainer = document.getElementById("flighttable");
         divContainer.innerHTML = "<b>Best Flights</b>";
-        divContainer.appendChild(table);
-        $('#flighttable th:nth-child(1), #flighttable td:nth-child(1)').remove();
-        $('#flighttable th:last-child, #flighttable td:last-child').remove();
+        var x,y;
+        if(returnDate.style.display === 'block')
+        {
+            var rows =  table.rows;
+            for(var i=0; i<rows.length;i++)
+            {
+                x = rows[i].getElementsByTagName("td")[4]; 
+                for (var j=i+1; j<rows.length;j++)
+                {
+                    y = rows[j].getElementsByTagName("td")[5]; 
+                    if(x.innerHTML === y.innerHTML)
+                    {
+                        rows[i].parentNode.insertBefore(rows[j], rows[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            divContainer.appendChild(table);
+        }
+        $('#flighttable th:last-child').hide();
         var passengers = document.getElementById("PassengersCount").value;
         sessionStorage.setItem( 'Passengersobject', passengers );
         })

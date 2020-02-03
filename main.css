@@ -118,3 +118,6 @@ body {
   .btnnavigation:active{
     text-decoration: underline;
   }
+  .One-way:active{
+    text-decoration: underline;
+  }

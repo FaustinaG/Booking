@@ -33,9 +33,9 @@ $(document).ready(function(){
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
-            if(col[j] === "FlightName")
+            if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j-1]]+'">'+flight_data[i][col[j]]+'</a>';
+                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j-1]]+'"><button><b>Cancel ticket</b></button></a>';
             }
             else
             {
@@ -47,8 +47,8 @@ $(document).ready(function(){
     var divContainer = document.getElementById("cancelflighttable");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
-    $('#cancelflighttable th:nth-child(1), #cancelflighttable td:nth-child(1)').remove();
     $('#cancelflighttable th:last-child, #cancelflighttable td:last-child').remove();
+    $('#cancelflighttable th:last-child').hide();
 })
 
 $("#cancelflighttable").click(function(e) {

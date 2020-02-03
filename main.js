@@ -9,8 +9,30 @@ $(document).ready(function(){
     $("#Return").click(function(){
         returnDate.style.display = 'block';
     })
-    $("#departure-date").datepicker();
-    $("#return-date").datepicker();
+    $("#departure-date").datepicker({
+        onSelect: function(dateText, inst) {
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                $('#departure-date').val('');
+                $(inst).datepicker('show');
+            }
+        }
+    });
+    $("#return-date").datepicker({
+        onSelect: function(dateText, inst) {
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                $('#return-date').val('');
+                $(inst).datepicker('show');
+            }
+        }
+    });
     var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
 
     $("#From-City").autocomplete({
@@ -70,5 +92,8 @@ $(document).ready(function(){
         sessionStorage.setItem( 'Statusobject', Status );
         window.location="Login.html";
     })
+
+    var triptype = returnDate.style.display === 'block' ? "Return":"Oneway";
+    SessionStorage.setItem( 'triptypeobject', triptype );
 
   })
