@@ -6,7 +6,6 @@ $(document).ready(function(){
         $.ajax({
             url: "http://localhost:60483/api/TicketDetail/PutTicketCancellation/"+TicketId,
             type: "PUT",
-            //data: JSON.stringify(ticket),
             contentType: "application/json",
             success: function (data) {
                 var history = {

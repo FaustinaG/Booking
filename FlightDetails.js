@@ -172,28 +172,7 @@ $("#flighttable").click(function(e) {
         }
         var divContainer = document.getElementById("flighttable");
         divContainer.innerHTML = "<b>Best Flights</b>";
-        var x,y;
-        if(returnDate.style.display === 'block')
-        {
-            var rows =  table.rows;
-            for(var i=0; i<rows.length;i++)
-            {
-                x = rows[i].getElementsByTagName("td")[4]; 
-                for (var j=i+1; j<rows.length;j++)
-                {
-                    y = rows[j].getElementsByTagName("td")[5]; 
-                    if(x.innerHTML === y.innerHTML)
-                    {
-                        rows[i].parentNode.insertBefore(rows[j], rows[i]);
-                        break;
-                    }
-                }
-            }
-        }
-        else
-        {
             divContainer.appendChild(table);
-        }
         $('#flighttable th:last-child').hide();
         var passengers = document.getElementById("PassengersCount").value;
         sessionStorage.setItem( 'Passengersobject', passengers );
