@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     $("#submit").click(function(){
         var flight = {
             FlightName : document.getElementById("FlightName").value,
