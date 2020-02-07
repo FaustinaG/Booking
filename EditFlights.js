@@ -13,7 +13,7 @@ $(document).ready(function(){
             contentType: "application/json",
             success: function (data) { 
                 callback(data);
-                window.location="FlightDetailHistory.html";
+                window.location="FlightHistory.html";
             }
         })
     }) 

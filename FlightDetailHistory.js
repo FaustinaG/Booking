@@ -46,10 +46,10 @@ $(document).ready(function(){
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
     $('#flightdetailtable th:last-child').hide();
-    $('#flightdetailtable th:last-child').hide();
+    //$('#flightdetailtable th:last-child').hide();
 })
 
 $("#flightdetailtable").click(function(e) {
-    sessionStorage.setItem( 'FlightIdobject', e.target.id );
+    sessionStorage.setItem( 'FlightDetailIdobject', e.target.id );
 });
 })

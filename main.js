@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $('.page-header').height($(window).height());
+    var UserId = sessionStorage.getItem('UserIdobject');
+    var UserType = sessionStorage.getItem('UserTypeobject');
     $("#One-way").addClass('active');
     var returnDate = document.getElementById("return-date");
     returnDate.style.display = 'none';
@@ -21,6 +23,20 @@ $(document).ready(function(){
             }
         }
     });
+    if(UserId>"0" && UserType === "0")
+    {
+        $('#Login').hide();
+    }
+    else if(UserId>"0" && UserType === "1")
+    {
+        $('#Login').hide();
+        $('#flighthistory').hide();
+    }
+    else
+    {
+        $('#flighthistory').hide();
+        $('#usertickethistory').hide(); 
+    }
     $("#return-date").datepicker({
         onSelect: function(dateText, inst) {
             var today = new Date();
@@ -90,7 +106,13 @@ $(document).ready(function(){
     $("#CancelTicket").click(function(){
         var Status = "Cancelled";
         sessionStorage.setItem( 'Statusobject', Status );
+        if(UserId>0)
+        {
+            window.location="CancelFlight.html";
+        }
+        else{
         window.location="Login.html";
+        }
     })
 
     var triptype = returnDate.style.display === 'block' ? "Return":"Oneway";

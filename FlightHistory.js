@@ -29,7 +29,7 @@ $(document).ready(function(){
             var tabCell = tr.insertCell(-1);
             if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="FlightDetailHistory.html" id="'+flight_data[i][col[j]]+'"><button><b>Flight Details</b></button></a>';
+                tabCell.innerHTML = '<a href="FlightDetailHistory.html"><button><b id="'+flight_data[i][col[j]]+'">Flight Details</b></button></a>';
             }
             else if(col[j] === "FlightId")
             {
@@ -50,11 +50,12 @@ $(document).ready(function(){
     divContainer.appendChild(table);
     //$('#flighttable th:last-child, #cancelflighttable td:last-child').remove();
     $('#flighttable th:last-child').hide();
-    $('#flighttable th:last-child').hide();
-    $('#flighttable th:last-child').hide();
+    $('#flighttable th:nth-child(3)').hide();
+    $('#flighttable th:nth-child(4)').hide();
 })
 
 $("#flighttable").click(function(e) {
     sessionStorage.setItem( 'FlightIdobject', e.target.id );
+    //window.location ="FlightDetailHistory.html";
 });
 })

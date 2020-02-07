@@ -178,12 +178,19 @@ $("#flighttable").click(function(e) {
         sessionStorage.setItem( 'Passengersobject', passengers );
         })
 
-
+        var UserId = sessionStorage.getItem('UserIdobject');
         $("#flighttable").click(function(e) {
             var Status = "Booking";
             sessionStorage.setItem( 'Statusobject', Status );
             sessionStorage.setItem( 'FlightIdobject', e.target.id );
-            window.location="Login.html";
+            if(UserId>0)
+            {
+                window.location="BookFlight.html";
+            }
+            else
+            {
+                window.location="Login.html";
+            }
         });
 
     })

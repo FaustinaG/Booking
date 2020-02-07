@@ -6,16 +6,21 @@ $(document).ready(function(){
     var Status = sessionStorage.getItem('Statusobject');
     var url = "http://localhost:60483/api/UserLogin/GetUser/"+UserName+"/"+Password;
     $.get(url, function (data) {
-        if(data>0)
+        if(!jQuery.isEmptyObject(data))
         {
-            sessionStorage.setItem( 'UserIdobject', data );
+            sessionStorage.setItem( 'UserIdobject', data.id );
+            sessionStorage.setItem( 'UserTypeobject', data.UserType );
             if(Status === "Booking")
             {
                 window.location="BookFlight.html";
             }
-            else
+            else if(Status === "Cancelled")
             {
                 window.location="CancelFlight.html";
+            }
+            else
+            {
+                window.location="Index.html";
             }
         }
         else

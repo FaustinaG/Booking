@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     $("#submit").click(function(){
         var flight = {
             FlightName : document.getElementById("FlightName").value,
@@ -14,7 +13,7 @@ $(document).ready(function(){
                 var flightid = data.id;
                 sessionStorage.setItem( 'flightidobject', flightid );
                 sessionStorage.setItem( 'FlightNameobject', document.getElementById("FlightName").value );
-                callback(data);
+                //callback(data);
                 window.location="AddFlightDetails.html";
             }
         })
