@@ -30,11 +30,11 @@ $(document).ready(function(){
             var tabCell = tr.insertCell(-1);
             if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="EditFlightDetails.html" id="'+flight_data[i][col[j]]+'"><button><b>Edit Flights</b></button></a>';
+                tabCell.innerHTML = '<a href="EditFlightDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Edit Flight Detail</b></button></a>';
             }
             else if(col[j] === "FlightId")
             {
-                tabCell.innerHTML = '<a href="DeleteFlightDetails.html" id="'+flight_data[i][col[j]]+'"><button><b>Delete Flights</b></button></a>';
+                tabCell.innerHTML = '<a href="DeleteFlightDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Delete Flight Detail</b></button></a>';
             }
             else
             {
@@ -46,7 +46,7 @@ $(document).ready(function(){
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
     $('#flightdetailtable th:last-child').hide();
-    //$('#flightdetailtable th:last-child').hide();
+    $('#flightdetailtable th:nth-child(9)').hide();
 })
 
 $("#flightdetailtable").click(function(e) {

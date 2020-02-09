@@ -95,7 +95,7 @@ $.getJSON(url, function (data) {
             var tabCell = tr.insertCell(-1);
             if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j]]+'"><button><b>Book</b></button></a>';
+                tabCell.innerHTML = '<a href="#"><button><b id="'+flight_data[i][col[j]]+'">Book</b></button></a>';
             }
             else
             {
@@ -107,6 +107,7 @@ $.getJSON(url, function (data) {
     var divContainer = document.getElementById("flighttable");
     divContainer.innerHTML = "<b>Best Flights</b>";
     divContainer.appendChild(table);
+    $('#flighttable th:last-child, #flighttable td:last-child').remove();
     $('#flighttable th:last-child').hide();
     var passengers = document.getElementById("PassengersCount").value;
     sessionStorage.setItem( 'Passengersobject', passengers );
@@ -172,7 +173,8 @@ $("#flighttable").click(function(e) {
         }
         var divContainer = document.getElementById("flighttable");
         divContainer.innerHTML = "<b>Best Flights</b>";
-            divContainer.appendChild(table);
+        divContainer.appendChild(table);
+        $('#flighttable th:last-child, #flighttable td:last-child').remove();
         $('#flighttable th:last-child').hide();
         var passengers = document.getElementById("PassengersCount").value;
         sessionStorage.setItem( 'Passengersobject', passengers );

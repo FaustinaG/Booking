@@ -35,7 +35,7 @@ $(document).ready(function(){
             var tabCell = tr.insertCell(-1);
             if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j-1]]+'"><button><b>Cancel ticket</b></button></a>';
+                tabCell.innerHTML = '<a href="#"><button><b id="'+flight_data[i][col[j]]+'">Cancel ticket</b></button></a>';
             }
             else
             {
