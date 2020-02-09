@@ -43,3 +43,12 @@ $("#flighttable").click(function(e) {
  
 });
 })
+var timeout;
+document.onmousemove = function(){
+  clearTimeout(timeout);
+  timeout = setTimeout(function(){
+      sessionStorage.clear();
+      window.location = "Index.html";
+
+  }, 600000);
+}

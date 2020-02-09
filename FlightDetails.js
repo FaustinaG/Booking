@@ -5,7 +5,6 @@ $(document).ready(function(){
     var ReturnDate = sessionStorage.getItem('ReturnDateobject');
     var PassengersCount = sessionStorage.getItem('PassengersCountobject');
     var ReturnDateStyle = sessionStorage.getItem('ReturnDateStyleobject');
-    sessionStorage.clear();
     var returnDate = document.getElementById("return-date");
     if(ReturnDateStyle === 'none')
     {

@@ -118,4 +118,29 @@ $(document).ready(function(){
     var triptype = returnDate.style.display === 'block' ? "Return":"Oneway";
     SessionStorage.setItem( 'triptypeobject', triptype );
 
+    // (function () {
+    //     var timeoutSession;
+    //     document.addEventListener('mousemove', function (e) {
+    //         clearTimeout(timeoutSession);
+    //         timeoutSession = setTimeout(function () {
+    //             alert('Make SESSION expire');
+    //             //call a script here to server...
+    //         }, 30000); //30s
+    //     }, true);
+    // })();
+    // setTimeout(function() {
+    //     alert("time out");
+    //     //window.location.href = "http://test.example.com/;"
+    //    }, 1000);
+
   })
+
+  var timeout;
+  document.onmousemove = function(){
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){
+        sessionStorage.clear();
+        window.location = "Index.html";
+
+    }, 600000);
+  }

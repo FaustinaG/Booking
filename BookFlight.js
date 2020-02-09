@@ -77,3 +77,13 @@ $.getJSON(url+FlightId, function (data) {
         
     })
 })
+
+var timeout;
+document.onmousemove = function(){
+  clearTimeout(timeout);
+  timeout = setTimeout(function(){
+      sessionStorage.clear();
+      window.location = "Index.html";
+
+  }, 600000);
+}
