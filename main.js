@@ -7,9 +7,13 @@ $(document).ready(function(){
     returnDate.style.display = 'none';
     $("#One-way").click(function(){
         returnDate.style.display = 'none';
+        $("#Return").removeClass('active');
+        $("#One-way").addClass('active');
     })
     $("#Return").click(function(){
         returnDate.style.display = 'block';
+        $("#One-way").removeClass('active');
+        $("#Return").addClass('active');
     })
     $("#departure-date").datepicker({
         onSelect: function(dateText, inst) {
@@ -35,7 +39,8 @@ $(document).ready(function(){
     else
     {
         $('#flighthistory').hide();
-        $('#usertickethistory').hide(); 
+        $('#usertickethistory').hide();
+        $('#logoutuser').hide(); 
     }
     $("#return-date").datepicker({
         onSelect: function(dateText, inst) {
@@ -118,20 +123,6 @@ $(document).ready(function(){
     var triptype = returnDate.style.display === 'block' ? "Return":"Oneway";
     SessionStorage.setItem( 'triptypeobject', triptype );
 
-    // (function () {
-    //     var timeoutSession;
-    //     document.addEventListener('mousemove', function (e) {
-    //         clearTimeout(timeoutSession);
-    //         timeoutSession = setTimeout(function () {
-    //             alert('Make SESSION expire');
-    //             //call a script here to server...
-    //         }, 30000); //30s
-    //     }, true);
-    // })();
-    // setTimeout(function() {
-    //     alert("time out");
-    //     //window.location.href = "http://test.example.com/;"
-    //    }, 1000);
 
   })
 
@@ -144,3 +135,9 @@ $(document).ready(function(){
 
     }, 600000);
   }
+
+  $("#logoutuser").click(function(){
+    sessionStorage.clear();
+    UserId=0;
+    window.location = "Index.html";
+})

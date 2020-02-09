@@ -26,7 +26,7 @@ body {
   }
   .nav-link,
   .navbar-brand {
-    color: #000000;
+    color: #020000;
     cursor: pointer;
   }
   .nav-link {
@@ -108,7 +108,7 @@ body {
   .btnnavigation{
     background-color: #f8be00;
     border: none;
-    color: rgb(0, 0, 0);
+    color: rgb(2, 0, 0);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -118,6 +118,6 @@ body {
   .btnnavigation:active{
     text-decoration: underline;
   }
-  .One-way:active{
-    text-decoration: underline;
+  .active{
+    color: rgb(16, 154, 235);
   }
