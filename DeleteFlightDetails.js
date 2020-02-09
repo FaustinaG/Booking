@@ -17,11 +17,11 @@ $(document).ready(function(){
 
     for (var i = 0; i < flight_data.length; i++) {
         for (var j = 0; j < col.length; j++) {
-            if(col[j] === "Departure")
+            if(col[j] === "JourneyDate")
             {
                 document.getElementById("Departure").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "Arrival")
+            else if(col[j] === "JourneyDate")
             {
                 document.getElementById("Arrival").value = flight_data[i][col[j]];
             }
