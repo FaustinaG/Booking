@@ -1,10 +1,15 @@
 $(document).ready(function(){
     var FlightId = sessionStorage.getItem('FlightIdobject');
     var Passengers = sessionStorage.getItem('Passengersobject');
-    document.getElementById("Passengers").value = Passengers;
+    var ReturnFlightId = sessionStorage.getItem('ReturnFlightIdobject');
     var UserId = sessionStorage.getItem('UserIdobject');
+    sessionStorage.removeItem('FlightIdobject');
+    sessionStorage.removeItem('ReturnFlightIdobject');
+    sessionStorage.removeItem('Passengersobject');
+    var ReturnTotalFare = 0;
+    var OnwardTotalFare = 0;
 
-    var url = "http://localhost:60483/api/FlightDetail/GetFlightsById/";
+var url = "http://localhost:60483/api/FlightDetail/GetFlightsById/";
 $.getJSON(url+FlightId, function (data) {
         var flight_data = [];   
     $.each(data, function(key, value){
@@ -19,34 +24,98 @@ $.getJSON(url+FlightId, function (data) {
         }
     }
 
-    for (var i = 0; i < flight_data.length; i++) {
-        for (var j = 0; j < col.length; j++) {
+    var table = document.createElement("table");
+        var tr = table.insertRow(-1);
+    
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+    
+        for (var i = 0; i < flight_data.length; i++) {
+
+            tr = table.insertRow(-1);
+            for (var j = 0; j < col.length; j++) {
+            var tabCell = tr.insertCell(-1);
             if(col[j] === "Price")
             {
                 var Price = flight_data[i][col[j]];
-                document.getElementById("Price").value = (Price*Passengers);
+                OnwardTotalFare = (Price*Passengers);
+                tabCell.innerHTML = flight_data[i][col[j]];
             }
-            else if(col[j] === "FromCity")
+            else
             {
-                document.getElementById("From-City").value = flight_data[i][col[j]];
+                tabCell.innerHTML = flight_data[i][col[j]];
             }
-            else if(col[j] === "ToCity")
-            {
-                document.getElementById("To-City").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "FlightName")
-            {
-                document.getElementById("FlightName").value = flight_data[i][col[j]];
-            }
-    }
-    } 
+
+        }
+        var divContainer = document.getElementById("bookflighttable");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        $('#bookflighttable th:last-child, #bookflighttable td:last-child').remove();
+        $('#bookflighttable th:last-child, #bookflighttable td:last-child').remove();
+
 })
+if(ReturnFlightId>0)
+{
+$.getJSON(url+ReturnFlightId, function (data) {
+    var flight_data = [];   
+$.each(data, function(key, value){
+     flight_data.push(value);
+});
+var col = [];
+for (var i = 0; i < flight_data.length; i++) {
+    for (var key in flight_data[i]) {
+        if (col.indexOf(key) === -1) {
+            col.push(key);
+        }
+    }
+}
+
+var table = document.createElement("table");
+    var tr = table.insertRow(-1);
+
+    for (var i = 0; i < col.length; i++) {
+        var th = document.createElement("th");
+        th.innerHTML = col[i];
+        tr.appendChild(th);
+    }
+
+    for (var i = 0; i < flight_data.length; i++) {
+
+        tr = table.insertRow(-1);
+        for (var j = 0; j < col.length; j++) {
+            var tabCell = tr.insertCell(-1);
+            if(col[j] === "Price")
+            {
+                var Price = flight_data[i][col[j]];
+                ReturnTotalFare = (Price*Passengers);
+                tabCell.innerHTML = flight_data[i][col[j]];
+            }
+            else
+            {
+                tabCell.innerHTML = flight_data[i][col[j]];
+            }
+        }
+
+    }
+    var divContainer = document.getElementById("returnflighttable");
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
+    $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
+    $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
+
+})
+}
+
 
     $("#book").click(function(){
         var ticket = {
         BookingStatus : 0,
         PassengerCount : Passengers,
-        TotalFare : document.getElementById("Price").value,
+        TotalFare : OnwardTotalFare,
         CancellationFare : "0",
         FlightDetailId : FlightId
     }
@@ -71,10 +140,47 @@ $.getJSON(url+FlightId, function (data) {
                             callback(data);
                         }
                     })
-                window.location="Result.html";
+                
             }
         })
+        if(ReturnFlightId>0)
+        {
+            var returnticket = {
+                BookingStatus : 0,
+                PassengerCount : Passengers,
+                TotalFare : ReturnTotalFare,
+                CancellationFare : "0",
+                FlightDetailId : ReturnFlightId
+            }
         
+                $.ajax({
+                    url: "http://localhost:60483/api/TicketDetail/PostTicketBooking",
+                    type: "POST",
+                    data: JSON.stringify(returnticket),
+                    contentType: "application/json",
+                    success: function (data) {
+                        var ticketid = data.id;
+                        var returnhistory = {
+                            UserLoginId : UserId,
+                            TicketDetailId : ticketid
+                        }
+                            $.ajax({
+                                url: "http://localhost:60483/api/UserTicketHistory/PostUserTicketHistory",
+                                type: "POST",
+                                data: JSON.stringify(returnhistory),
+                                contentType: "application/json",
+                                success: function (data) {
+                                    callback(data);
+                                }
+                            })
+                        window.location="Result.html";
+                    }
+                })
+        }
+        else
+        {
+            window.location="Result.html";
+        }
     })
 })
 

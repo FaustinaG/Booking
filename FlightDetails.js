@@ -82,8 +82,7 @@ $.getJSON(url, function (data) {
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate) || (returnDate.style.display === 'block'
-            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity && flight_data[i]["JourneyDate"] === ReturnDate))
+        if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate)
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
@@ -108,11 +107,32 @@ $.getJSON(url, function (data) {
     sessionStorage.setItem( 'Passengersobject', passengers );
    
 })
+var UserId = sessionStorage.getItem('UserIdobject');
 $("#flighttable").click(function(e) {
     var Status = "Booking";
     sessionStorage.setItem( 'Statusobject', Status );
     sessionStorage.setItem( 'FlightIdobject', e.target.id );
-    window.location="Login.html";
+    if(returnDate.style.display === 'none')
+    {
+        if(UserId>0)
+        {
+            window.location="BookFlight.html";
+        }
+        else
+        {
+            window.location="Login.html";
+        }
+    }
+    else
+    {
+        var FromCity = document.getElementById("From-City").value;
+        var ToCity = document.getElementById("To-City").value;
+        var ReturnDate = document.getElementById("return-date").value.replace(/\//g,'-');
+        sessionStorage.setItem( 'FromCityRobject', FromCity );
+        sessionStorage.setItem( 'ToCityRobject', ToCity );
+        sessionStorage.setItem( 'ReturnDateRobject', ReturnDate );
+        window.location="ReturnFlightDetails.html";
+    }
 });
     
 
@@ -177,8 +197,7 @@ $("#flighttable").click(function(e) {
         }
     
         for (var i = 0; i < flight_data.length; i++) {
-            if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate) || (returnDate.style.display === 'block'
-            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity && flight_data[i]["JourneyDate"] === ReturnDate))
+            if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate)
             {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {
@@ -208,13 +227,26 @@ $("#flighttable").click(function(e) {
             var Status = "Booking";
             sessionStorage.setItem( 'Statusobject', Status );
             sessionStorage.setItem( 'FlightIdobject', e.target.id );
-            if(UserId>0)
+            if(returnDate.style.display === 'none')
             {
-                window.location="BookFlight.html";
+                if(UserId>0)
+                {
+                    window.location="BookFlight.html";
+                }
+                else
+                {
+                    window.location="Login.html";
+                }
             }
             else
             {
-                window.location="Login.html";
+                var FromCity = document.getElementById("From-City").value;
+                var ToCity = document.getElementById("To-City").value;
+                var ReturnDate = document.getElementById("return-date").value.replace(/\//g,'-');
+                sessionStorage.setItem( 'FromCityRobject', FromCity );
+                sessionStorage.setItem( 'ToCityRobject', ToCity );
+                sessionStorage.setItem( 'ReturnDateRobject', ReturnDate );
+                window.location="ReturnFlightDetails.html";
             }
         });
 
