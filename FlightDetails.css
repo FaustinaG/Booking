@@ -31,3 +31,16 @@ body {
     table-layout: fixed;
     box-sizing: border-box;
   }
+  .navbtn{
+    background-color:#f2f6e9;
+    border: none;
+    color: rgb(2, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .active{
+    text-decoration: underline;
+  }

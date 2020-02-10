@@ -30,6 +30,18 @@ $(document).ready(function(){
 })
 
     $("#submit").click(function(){
+        var FlightName = document.getElementById("FlightName").value;
+        if(FlightName.trim()=="")
+        {
+            alert("Please enter 'Flight Name'");
+            return false;
+        }
+        var TotalSeats = document.getElementById("TotalSeats").value;
+        if(TotalSeats.trim()=="")
+        {
+            alert("Please enter 'Total Seats'");
+            return false;
+        }
         var flight = {
             Id : flightId,
             FlightName : document.getElementById("FlightName").value,

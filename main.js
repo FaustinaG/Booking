@@ -25,8 +25,13 @@ $(document).ready(function(){
                 $('#departure-date').val('');
                 $(inst).datepicker('show');
             }
+
+            $("#return-date").datepicker("option","minDate",
+     $("#departure-date").datepicker("getDate"));
         }
     });
+    $("#return-date").datepicker();
+
     if(UserId>"0" && UserType === "0")
     {
         $('#Login').hide();
@@ -42,18 +47,7 @@ $(document).ready(function(){
         $('#usertickethistory').hide();
         $('#logoutuser').hide(); 
     }
-    $("#return-date").datepicker({
-        onSelect: function(dateText, inst) {
-            var today = new Date();
-            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
-            var selDate = Date.parse(dateText);
 
-            if(selDate < today) {
-                $('#return-date').val('');
-                $(inst).datepicker('show');
-            }
-        }
-    });
     var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
 
     $("#From-City").autocomplete({

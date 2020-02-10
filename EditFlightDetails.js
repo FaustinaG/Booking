@@ -69,7 +69,51 @@ $("#Arrival").datepicker({
         }
     }
 });
+var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
+
+    $("#From-City").autocomplete({
+    source: countries
+    });
+    $("#To-City").autocomplete({
+        source: countries
+        });
     $("#submit").click(function(){
+        var FromCity = document.getElementById("FromCity").value;
+            if(FromCity.trim()=="")
+        {
+            alert("Please enter 'From' airport");
+            return false;
+        }
+            var ToCity = document.getElementById("ToCity").value;
+            if(ToCity.trim()=="")
+        {
+            alert("Please enter 'To' airport");
+            return false;
+        }
+            var DepartureDate = document.getElementById("Departure").value.replace(/\//g,'-');
+            if(DepartureDate.trim()=="")
+        {
+            alert("Please enter 'Departure Date'");
+            return false;
+        }
+            var ReturnDate = document.getElementById("Arrival").value.replace(/\//g,'-');
+            if(returnDate.style.display === 'block' && ReturnDate.trim()=="")
+        {
+            alert("Please enter 'Return Date'");
+            return false;
+        }
+        var Price = document.getElementById("Price").value;
+        if(Price.trim()=="")
+        {
+            alert("Please enter 'Price'");
+            return false;
+        }
+        var seats = document.getElementById("seats").value;
+        if(seats.trim()=="")
+        {
+            alert("Please enter 'Seat Availability'");
+            return false;
+        }
         var flight = {
             Id : flighdetailId,
             FromCity : document.getElementById("FromCity").value,

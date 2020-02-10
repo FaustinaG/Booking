@@ -17,11 +17,15 @@ $(document).ready(function(){
         $("#Return").addClass('active');
     }
     $("#One-way").click(function(){
+        $("#Return").removeClass('active');
+        $("#One-way").addClass('active');
         returnDate.style.display = 'none';
         returnDate.clear();
     })
     $("#Return").click(function(){
         returnDate.style.display = 'block';
+        $("#One-way").removeClass('active');
+        $("#Return").addClass('active');
     })
     $("#departure-date").datepicker({
         onSelect: function(dateText, inst) {
@@ -33,20 +37,12 @@ $(document).ready(function(){
                 $('#departure-date').val('');
                 $(inst).datepicker('show');
             }
-        }
-    });
-    $("#return-date").datepicker({
-        onSelect: function(dateText, inst) {
-            var today = new Date();
-            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
-            var selDate = Date.parse(dateText);
 
-            if(selDate < today) {
-                $('#return-date').val('');
-                $(inst).datepicker('show');
-            }
+            $("#return-date").datepicker("option","minDate",
+     $("#departure-date").datepicker("getDate"));
         }
     });
+    $("#return-date").datepicker();
     var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
 
     $("#From-City").autocomplete({
@@ -129,9 +125,35 @@ $("#flighttable").click(function(e) {
     $("#getflights").click(function(){
         $.getJSON(url,function(data){
             var FromCity = document.getElementById("From-City").value;
+            if(FromCity.trim()=="")
+        {
+            alert("Please enter 'From' airport");
+            return false;
+        }
             var ToCity = document.getElementById("To-City").value;
+            if(ToCity.trim()=="")
+        {
+            alert("Please enter 'To' airport");
+            return false;
+        }
             var DepartureDate = document.getElementById("departure-date").value.replace(/\//g,'-');
+            if(DepartureDate.trim()=="")
+        {
+            alert("Please enter 'Departure Date'");
+            return false;
+        }
             var ReturnDate = document.getElementById("return-date").value.replace(/\//g,'-');
+            if(returnDate.style.display === 'block' && ReturnDate.trim()=="")
+        {
+            alert("Please enter 'Return Date'");
+            return false;
+        }
+        var PassengersCount = document.getElementById("PassengersCount").value;
+        if(PassengersCount.trim()=="")
+        {
+            alert("Please enter 'Passengers Count'");
+            return false;
+        }
             var flight_data = [];   
         $.each(data, function(key, value){
              flight_data.push(value);
