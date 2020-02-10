@@ -27,9 +27,6 @@ $(document).ready(function(){
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        //if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity) || (returnDate.style.display === 'block'
-        //&& flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity))
-        //{
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
@@ -42,7 +39,6 @@ $(document).ready(function(){
                 tabCell.innerHTML = flight_data[i][col[j]];
             }
         }
-    //}
     }
     var divContainer = document.getElementById("cancelflighttable");
     divContainer.innerHTML = "";

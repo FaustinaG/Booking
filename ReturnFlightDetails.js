@@ -8,6 +8,7 @@ $(document).ready(function(){
     document.getElementById("To-City").value = FromCity;
     document.getElementById("departure-date").value = ReturnDate;
     document.getElementById("PassengersCount").value = Passengers;
+
     var url = "http://localhost:60483/api/FlightDetail/GetFlights";
 $.getJSON(url, function (data) {
         var flight_data = [];   
@@ -34,7 +35,7 @@ $.getJSON(url, function (data) {
 
     for (var i = 0; i < flight_data.length; i++) {
         if(flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity 
-        && flight_data[i]["JourneyDate"] === ReturnDate)
+        && flight_data[i]["JourneyDate"] === ReturnDate && flight_data[i]["SeatAvailability"]>=Passengers)
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
@@ -55,6 +56,20 @@ $.getJSON(url, function (data) {
     divContainer.appendChild(table);
     $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
     $('#returnflighttable th:last-child').hide();
+
+    var rowCount = $('#returnflighttable tr').length;
+    if(rowCount === 1)
+    {
+    alert("No Flights Found for return journey");
+    if(UserId>0)
+    {
+        window.location="BookFlight.html";
+    }
+    else
+    {
+        window.location="Login.html";
+    }
+    }
    
 })
 var UserId = sessionStorage.getItem('UserIdobject');
@@ -69,4 +84,20 @@ $("#returnflighttable").click(function(e) {
         window.location="Login.html";
     }
 });
+})
+
+var timeout;
+document.onmousemove = function(){
+  clearTimeout(timeout);
+  timeout = setTimeout(function(){
+      sessionStorage.clear();
+      window.location = "Index.html";
+
+  }, 600000);
+}
+
+$("#logoutuser").click(function(){
+  sessionStorage.clear();
+  UserId=0;
+  window.location = "Index.html";
 })

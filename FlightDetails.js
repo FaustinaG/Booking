@@ -82,7 +82,8 @@ $.getJSON(url, function (data) {
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate)
+        if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate
+        && flight_data[i]["SeatAvailability"]>=PassengersCount)
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
@@ -197,7 +198,8 @@ $("#flighttable").click(function(e) {
         }
     
         for (var i = 0; i < flight_data.length; i++) {
-            if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate)
+            if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate
+            && flight_data[i]["SeatAvailability"]>=PassengersCount)
             {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {
@@ -251,4 +253,20 @@ $("#flighttable").click(function(e) {
         });
 
     })
+})
+
+var timeout;
+document.onmousemove = function(){
+  clearTimeout(timeout);
+  timeout = setTimeout(function(){
+      sessionStorage.clear();
+      window.location = "Index.html";
+
+  }, 600000);
+}
+
+$("#logoutuser").click(function(){
+  sessionStorage.clear();
+  UserId=0;
+  window.location = "Index.html";
 })
