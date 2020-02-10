@@ -1,8 +1,8 @@
 $(document).ready(function(){
     var FromCity = sessionStorage.getItem('FromCityobject');
     var ToCity = sessionStorage.getItem('ToCityobject');
-    var DepartureDate = sessionStorage.getItem('DepartureDateobject');
-    var ReturnDate = sessionStorage.getItem('ReturnDateobject');
+    var DepartureDate = sessionStorage.getItem('DepartureDateobject').replace(/\//g,'-');
+    var ReturnDate = sessionStorage.getItem('ReturnDateobject').replace(/\//g,'-');
     var PassengersCount = sessionStorage.getItem('PassengersCountobject');
     var ReturnDateStyle = sessionStorage.getItem('ReturnDateStyleobject');
     var returnDate = document.getElementById("return-date");
@@ -86,8 +86,8 @@ $.getJSON(url, function (data) {
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity) || (returnDate.style.display === 'block'
-            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity))
+        if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate) || (returnDate.style.display === 'block'
+            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity && flight_data[i]["JourneyDate"] === ReturnDate))
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
@@ -130,6 +130,8 @@ $("#flighttable").click(function(e) {
         $.getJSON(url,function(data){
             var FromCity = document.getElementById("From-City").value;
             var ToCity = document.getElementById("To-City").value;
+            var DepartureDate = document.getElementById("departure-date").value.replace(/\//g,'-');
+            var ReturnDate = document.getElementById("return-date").value.replace(/\//g,'-');
             var flight_data = [];   
         $.each(data, function(key, value){
              flight_data.push(value);
@@ -153,15 +155,15 @@ $("#flighttable").click(function(e) {
         }
     
         for (var i = 0; i < flight_data.length; i++) {
-            if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity) || (returnDate.style.display === 'block'
-            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity))
+            if((flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate) || (returnDate.style.display === 'block'
+            && flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity && flight_data[i]["JourneyDate"] === ReturnDate))
             {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
                 if(col[j] === "Id")
                 {
-                    tabCell.innerHTML = '<a href="#" id="'+flight_data[i][col[j]]+'"><button><b>Book</b></button></a>';
+                    tabCell.innerHTML = '<a href="#"><button><b id="'+flight_data[i][col[j]]+'">Book</b></button></a>';
                 }
                 else
                 {

@@ -14,9 +14,9 @@ $(document).ready(function(){
         return false;
     }
         var userdetail = {
-        UserName : document.getElementById("UserName").value,
-        Password : document.getElementById("Password").value,
-        TypeOfUser : 1
+        UserName : UserName,
+        Password : Password,
+        TypeOfUser : "1"
     }
 
         $.ajax({

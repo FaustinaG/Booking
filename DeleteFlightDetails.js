@@ -20,9 +20,6 @@ $(document).ready(function(){
             if(col[j] === "JourneyDate")
             {
                 document.getElementById("Departure").value = flight_data[i][col[j]];
-            }
-            else if(col[j] === "JourneyDate")
-            {
                 document.getElementById("Arrival").value = flight_data[i][col[j]];
             }
             else if(col[j] === "FromCity")
