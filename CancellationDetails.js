@@ -55,9 +55,15 @@ $(document).ready(function(){
                         contentType: "application/json",
                         success: function (data) {
                             callback(data);
+                        },
+                        error: function () {
+                            alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
                         }
                     })
                 window.location="CancellationResult.html";
+            },
+            error: function () {
+                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
             }
         })
         

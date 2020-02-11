@@ -54,6 +54,9 @@ $(document).ready(function(){
             success: function (data) { 
                 alert("Data deleted successfully");
                 window.location="FlightDetailHistory.html";
+            },
+            error: function () {
+                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
             }
         })
     }) 

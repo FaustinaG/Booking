@@ -36,6 +36,8 @@ $(document).ready(function(){
         else
         {
             alert("Invalid Login Credentails");
+            $('#UserName').val('');
+            $('#Password').val('');
             return false;
         }
     })

@@ -1,37 +1,15 @@
 $(document).ready(function(){
-    var flightid = sessionStorage.getItem('flightidobject');
-    var flightname = sessionStorage.getItem('FlightNameobject');
-    document.getElementById("FlightName").value = flightname;
-    $("#Departure").datepicker({
-        onSelect: function(dateText, inst) {
-            var today = new Date();
-            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
-            var selDate = Date.parse(dateText);
-
-            if(selDate < today) {
-                $('#Departure').val('');
-                $(inst).datepicker('show');
-            }
-        }
-    });
-    $("#Arrival").datepicker({
-        onSelect: function(dateText, inst) {
-            var today = new Date();
-            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
-            var selDate = Date.parse(dateText);
-
-            if(selDate < today) {
-                $('#Arrival').val('');
-                $(inst).datepicker('show');
-            }
-        }
-    });
+    var flightid = sessionStorage.getItem('FlightIdobject');
+    //var flightname = sessionStorage.getItem('FlightNameobject');
+    //document.getElementById("FlightName").value = flightname;
+    // $("#Departure").datetimepicker();
+    // $('#Arrival').datetimepicker();
     var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
 
-    $("#From-City").autocomplete({
+    $("#FromCity").autocomplete({
     source: countries
     });
-    $("#To-City").autocomplete({
+    $("#ToCity").autocomplete({
         source: countries
         });
     $("#submit").click(function(){
@@ -47,14 +25,14 @@ $(document).ready(function(){
             alert("Please enter 'To' airport");
             return false;
         }
-            var DepartureDate = document.getElementById("Departure").value.replace(/\//g,'-');
+            var DepartureDate = $("#Departure").find("input").val();
             if(DepartureDate.trim()=="")
         {
             alert("Please enter 'Departure Date'");
             return false;
         }
-            var ReturnDate = document.getElementById("Arrival").value.replace(/\//g,'-');
-            if(returnDate.style.display === 'block' && ReturnDate.trim()=="")
+            var ReturnDate = $("#Arrival").find("input").val();
+            if(ReturnDate.trim()=="")
         {
             alert("Please enter 'Return Date'");
             return false;
@@ -74,8 +52,8 @@ $(document).ready(function(){
         var flightdetail = {
             FromCity : document.getElementById("FromCity").value,
             ToCity : document.getElementById("ToCity").value,
-            Departure : document.getElementById("Departure").value,
-            Arrival : document.getElementById("Arrival").value,
+            Departure : DepartureDate,
+            Arrival : ReturnDate,
             Price : document.getElementById("Price").value,
             SeatAvailability : document.getElementById("seats").value,
             FlightId : flightid
@@ -88,6 +66,9 @@ $(document).ready(function(){
             success: function (data) {
                 //callback(data);
                 window.location="FlightDetailHistory.html";
+            },
+            error: function () {
+                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
             }
         })
     }) 

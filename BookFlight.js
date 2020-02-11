@@ -146,9 +146,15 @@ else
                             {
                                 window.location="Result.html";
                             }
+                        },
+                        error: function () {
+                            alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
                         }
                     })
                 
+            },
+            error: function () {
+                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
             }
         })
         if(ReturnFlightId>0)

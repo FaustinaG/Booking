@@ -30,9 +30,19 @@
         <label for = "ToCity">To City : </label>
         <input class="form-control" type="text" id="ToCity" />
         <label for = "Departure">Departure : </label>
-        <input class="form-control" type="text" id="Departure" />
+        <div class="input-group date" id="Departure" data-target-input="nearest">
+          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Departure"/>
+          <span class="input-group-addon" data-target="#Departure" data-toggle="datetimepicker">
+              <span class="fa fa-calendar"></span>
+          </span>
+        </div>
         <label for = "Arrival">Arrival : </label>
-        <input class="form-control" type="text" id="Arrival" />
+        <div class="input-group date" id="Arrival" data-target-input="nearest">
+          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Arrival"/>
+          <span class="input-group-addon" data-target="#Arrival" data-toggle="datetimepicker">
+              <span class="fa fa-calendar"></span>
+          </span>
+        </div>
         <label for = "Price">Price : </label>
         <input class="form-control" type="text" id="Price" />
         <label for = "seats">Seat Availability : </label>

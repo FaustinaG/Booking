@@ -36,6 +36,7 @@ $(document).ready(function(){
     divContainer.appendChild(table);
     
     $('#flighttable th:last-child, #flighttable td:last-child').remove();
+    $('#flighttable th:last-child, #flighttable td:last-child').remove();
 })
 
 $("#flighttable").click(function(e) {

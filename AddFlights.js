@@ -23,7 +23,7 @@ $(document).ready(function(){
             contentType: "application/json",
             success: function (data) {
                 var flightid = data.id;
-                sessionStorage.setItem( 'flightidobject', flightid );
+                sessionStorage.setItem( 'FlightIdobject', flightid );
                 sessionStorage.setItem( 'FlightNameobject', document.getElementById("FlightName").value );
                 //callback(data);
                 window.location="AddFlightDetails.html";
