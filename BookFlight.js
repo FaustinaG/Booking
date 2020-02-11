@@ -142,7 +142,10 @@ else
                         data: JSON.stringify(history),
                         contentType: "application/json",
                         success: function (data) {
-                            callback(data);
+                            if(!(ReturnFlightId>0))
+                            {
+                                window.location="Result.html";
+                            }
                         }
                     })
                 
@@ -175,17 +178,13 @@ else
                                 data: JSON.stringify(returnhistory),
                                 contentType: "application/json",
                                 success: function (data) {
-                                    callback(data);
+                                    window.location="Result.html";
                                 }
                             })
-                        window.location="Result.html";
                     }
                 })
         }
-        else
-        {
-            window.location="Result.html";
-        }
+
     })
 })
 
