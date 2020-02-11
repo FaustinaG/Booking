@@ -109,6 +109,11 @@ var table = document.createElement("table");
 
 })
 }
+else
+{
+    $('#returnflighttable').remove();
+    $("#returnjourney").remove();
+}
 
 
     $("#book").click(function(){
