@@ -34,8 +34,8 @@ $.getJSON(url, function (data) {
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        if(flight_data[i]["FromCity"]===ToCity && flight_data[i]["ToCity"]===FromCity 
-        && flight_data[i]["JourneyDate"] === ReturnDate && flight_data[i]["SeatAvailability"]>=Passengers)
+        if(flight_data[i]["From City"]===ToCity && flight_data[i]["To City"]===FromCity 
+        && flight_data[i]["Journey Date"] === ReturnDate && flight_data[i]["Seat Availability"]>=Passengers)
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {

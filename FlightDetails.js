@@ -82,8 +82,8 @@ $.getJSON(url, function (data) {
     }
 
     for (var i = 0; i < flight_data.length; i++) {
-        if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate
-        && flight_data[i]["SeatAvailability"]>=PassengersCount)
+        if(flight_data[i]["From City"]===FromCity && flight_data[i]["To City"]===ToCity && flight_data[i]["Journey Date"] === DepartureDate
+        && flight_data[i]["Seat Availability"]>=PassengersCount)
         {
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
@@ -198,8 +198,8 @@ $("#flighttable").click(function(e) {
         }
     
         for (var i = 0; i < flight_data.length; i++) {
-            if(flight_data[i]["FromCity"]===FromCity && flight_data[i]["ToCity"]===ToCity && flight_data[i]["JourneyDate"] === DepartureDate
-            && flight_data[i]["SeatAvailability"]>=PassengersCount)
+            if(flight_data[i]["From City"]===FromCity && flight_data[i]["To City"]===ToCity && flight_data[i]["Journey Date"] === DepartureDate
+            && flight_data[i]["Seat Availability"]>=PassengersCount)
             {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {

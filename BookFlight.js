@@ -56,6 +56,7 @@ $.getJSON(url+FlightId, function (data) {
         divContainer.appendChild(table);
         $('#bookflighttable th:last-child, #bookflighttable td:last-child').remove();
         $('#bookflighttable th:last-child, #bookflighttable td:last-child').remove();
+        $('#bookflighttable th:last-child, #bookflighttable td:last-child').remove();
 
 })
 if(ReturnFlightId>0)
@@ -104,6 +105,7 @@ var table = document.createElement("table");
     var divContainer = document.getElementById("returnflighttable");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
+    $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
     $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
     $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
 

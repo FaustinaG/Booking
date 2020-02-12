@@ -18,19 +18,19 @@ $(document).ready(function(){
 
     for (var i = 0; i < flight_data.length; i++) {
         for (var j = 0; j < col.length; j++) {          
-            if(col[j] === "FromCity")
+            if(col[j] === "From City")
             {
                 document.getElementById("From-City").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "ToCity")
+            else if(col[j] === "To City")
             {
                 document.getElementById("To-City").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "PassengerCount")
+            else if(col[j] === "Passenger Count")
             {
                 document.getElementById("Passengers").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "TotalFare")
+            else if(col[j] === "Total Fare")
             {
                 document.getElementById("Price").value = flight_data[i][col[j]];
             }
