@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Edit Flight Details</title>
+    <title>Add Flight Details</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" crossorigin="anonymous">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -13,12 +13,12 @@
     <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
     <link href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="FlightDetails.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="jquery-1.8.2.min.js"></script>        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/jquery.min.js"></script>
    </head>
    <body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -27,34 +27,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.min.css"/>
+<script src="js/jquery.datetimepicker.js"></script>
     <div class="header">
         <a href="#" class="logo">Booking<span>.com</span></a>
       </div>
     <div class="container">
         <br>
-        <label for = "FlightName">Flight Name : </label>
-        <input class="form-control" type="text" id="FlightName" readonly/>
-        <label for = "FromCity">From City : </label>
-        <input class="form-control" type="text" id="FromCity" />
+        <!-- <label for = "FlightName">Flight Name : </label>
+        <input class="form-control" type="text" id="FlightName" /> -->
+        <!-- <label for = "FromCity">From City : </label>
+        <input class="form-control" type="text" id="FromCity" readonly/>
         <label for = "ToCity">To City : </label>
-        <input class="form-control" type="text" id="ToCity" />
-        <label for = "Departure">Departure : </label>
-        <div class="input-group date" id="Departure" data-target-input="nearest">
-          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Departure"/>
-          <span class="input-group-addon" data-target="#Departure" data-toggle="datetimepicker">
+        <input class="form-control" type="text" id="ToCity" readonly/> -->
+        <label for = "JourneyDate">Journey Date : </label>
+        <!-- <input class="form-control" type="text" id="Arrival" /> -->
+        <div class="input-group date" id="JourneyDate" data-target-input="nearest">
+          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#JourneyDate"/>
+          <span class="input-group-addon" data-target="#JourneyDate" data-toggle="datetimepicker">
               <span class="fa fa-calendar"></span>
           </span>
         </div>
-        <label for = "Arrival">Arrival : </label>
-        <div class="input-group date" id="Arrival" data-target-input="nearest">
-          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Arrival"/>
-          <span class="input-group-addon" data-target="#Arrival" data-toggle="datetimepicker">
-              <span class="fa fa-calendar"></span>
-          </span>
-        </div>
+        <label for = "Price">Price : </label>
+        <input class="form-control" type="text" id="Price" />
+        <label for = "seats">Seat Availability : </label>
+        <input class="form-control" type="text" id="seats" />
         <br>
         <button class="btn btn-primary" id="submit">Submit</button>
     </div>
-    <script src="EditFlightDetails.js"></script>
+    <script src="AddFlightScheduleDetails.js"></script>
    </body>
    </html>

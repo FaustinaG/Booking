@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    var flighdetailId = sessionStorage.getItem('FlightDetailIdobject');
-    var url = "http://localhost:60483/api/FlightDetail/GetFlightsById/";
+    var flighdetailId = sessionStorage.getItem('FlightScheduleDetailIdobject');
+    $("#JourneyDate").datepicker();
+    var url = "http://localhost:60483/api/FlightScheduleDetail/GetFlightScheduleDetailsById/";
     $.getJSON(url+flighdetailId, function (data) {
         var flight_data = [];   
     $.each(data, function(key, value){
@@ -19,18 +20,9 @@ $(document).ready(function(){
         for (var j = 0; j < col.length; j++) {
             if(col[j] === "Journey Date")
             {
-                document.getElementById("Departure").value = flight_data[i][col[j]];
-                document.getElementById("Arrival").value = flight_data[i][col[j]];
+                document.getElementById("JourneyDate").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "From City")
-            {
-                document.getElementById("FromCity").value = flight_data[i][col[j]];
-            }
-            else if(col[j] === "To City")
-            {
-                document.getElementById("ToCity").value = flight_data[i][col[j]];
-            }
-            else if(col[j] === "Price")
+            if(col[j] === "Price")
             {
                 document.getElementById("Price").value = flight_data[i][col[j]];
             }
@@ -38,26 +30,49 @@ $(document).ready(function(){
             {
                 document.getElementById("seats").value = flight_data[i][col[j]];
             }
-            else if(col[j] === "Flight Name")
-            {
-                document.getElementById("FlightName").value = flight_data[i][col[j]];
-            }
     }
     } 
 })
+
+
     $("#submit").click(function(){
+        
+        var JourneyDate = document.getElementById("JourneyDate").value;
+            if(JourneyDate.trim()=="")
+        {
+            alert("Please enter 'Journey Date'");
+            return false;
+        }
+        var Price = document.getElementById("Price").value;
+        if(Price.trim()=="")
+        {
+            alert("Please enter 'Price'");
+            return false;
+        }
+        var seats = document.getElementById("seats").value;
+        if(seats.trim()=="")
+        {
+            alert("Please enter 'Seat Availability'");
+            return false;
+        }
+        var flight = {
+            Id : flighdetailId,
+            JourneyDate : JourneyDate,
+            Price : document.getElementById("Price").value,
+            SeatAvailability : document.getElementById("seats").value
+        }
         $.ajax({
-            url: "http://localhost:60483/api/FlightDetail/DeleteFlightDetail/"+flighdetailId,
-            type: "DELETE",
+            url: "http://localhost:60483/api/FlightScheduleDetail/PutFlightScheduleDetail",
+            type: "PUT",
+            data: JSON.stringify(flight),
             headers: {
                 'Authorization': 'Bearer '
                     + sessionStorage.getItem("accessToken")
             },
-            //data: JSON.stringify(flight),
             contentType: "application/json",
             success: function (data) { 
-                alert("Data deleted successfully");
-                window.location="FlightDetailHistory.html";
+                alert("Data Saved Successfully");
+                window.location="FlightScheduleDetailHistory.html";
             },
             error: function(xhr, textStatus, errorThrow)
             {
@@ -69,7 +84,7 @@ $(document).ready(function(){
                 }
                 else
                 {
-                    alert(errorThrow);
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
                 }
             }
         })

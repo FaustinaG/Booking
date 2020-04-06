@@ -51,9 +51,26 @@ $(document).ready(function(){
             url: "http://localhost:60483/api/Flight/PutFlight",
             type: "PUT",
             data: JSON.stringify(flight),
+            headers: {
+                'Authorization': 'Bearer '
+                    + sessionStorage.getItem("accessToken")
+            },
             contentType: "application/json",
             success: function (data) { 
                 window.location="FlightHistory.html";
+            },
+            error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
             }
         })
     }) 

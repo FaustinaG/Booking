@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var flightId = sessionStorage.getItem('FlightIdobject');
-    var url ="http://localhost:60483/api/FlightDetail/GetFlightDetailsByFlightId/";
+    var flightId = sessionStorage.getItem('FlightDetailIdobject');
+    var url ="http://localhost:60483/api/FlightScheduleDetail/GetFlightScheduleDetailsByFlightDetailId/";
     $.getJSON(url+flightId,function(data){
         var flight_data = [];   
     $.each(data, function(key, value){
@@ -13,7 +13,7 @@ $(document).ready(function(){
                 col.push(key);
             }
         }
-    }
+    }   
 
     var table = document.createElement("table");
     var tr = table.insertRow(-1);
@@ -30,15 +30,11 @@ $(document).ready(function(){
             var tabCell = tr.insertCell(-1);
             if(col[j] === "Id")
             {
-                tabCell.innerHTML = '<a href="FlightScheduleDetailHistory.html"><button><b id="'+flight_data[i][col[j]]+'">Flight schedule details</b></button></a>';
+                tabCell.innerHTML = '<a href="EditFlightScheduleDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Edit Flight Schedule Detail</b></button></a>';
             }
             else if(col[j] === "FlightId")
             {
-                tabCell.innerHTML = '<a href="EditFlightDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Edit Flight Detail</b></button></a>';
-            }
-            else if(col[j] === "FlightIdTobeCanceled")
-            {
-                tabCell.innerHTML = '<a href="DeleteFlightDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Delete Flight Detail</b></button></a>';
+                tabCell.innerHTML = '<a href="DeleteFlightScheduleDetails.html"><button><b id="'+flight_data[i][col[j]]+'">Delete Flight Schedule Detail</b></button></a>';
             }
             else
             {
@@ -46,20 +42,17 @@ $(document).ready(function(){
             }
         }
     }
-    var divContainer = document.getElementById("flightdetailtable");
+    var divContainer = document.getElementById("flightscheduledetailtable");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
-    $('#flightdetailtable th:last-child').hide();
-    $('#flightdetailtable th:nth-child(9)').hide();
-    $('#flightdetailtable th:nth-child(10)').hide();
-    $('#flightdetailtable th:nth-child(8)').hide();
-    $('#flightdetailtable td:nth-child(8)').hide();
-    $('#flightdetailtable th:nth-child(7)').hide();
-    $('#flightdetailtable td:nth-child(7)').hide();
+    $('#flightscheduledetailtable th:last-child').hide();
+    $('#flightscheduledetailtable th:nth-child(10)').hide();
+    $('#flightscheduledetailtable th:nth-child(9)').hide();
+    $('#flightscheduledetailtable td:last-child').hide();
 })
 
-$("#flightdetailtable").click(function(e) {
-    sessionStorage.setItem( 'FlightDetailIdobject', e.target.id );
+$("#flightscheduledetailtable").click(function(e) {
+    sessionStorage.setItem( 'FlightScheduleDetailIdobject', e.target.id );
 });
 })
 

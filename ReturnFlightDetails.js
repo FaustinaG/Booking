@@ -56,6 +56,7 @@ $.getJSON(url, function (data) {
     divContainer.appendChild(table);
     $('#returnflighttable th:last-child, #returnflighttable td:last-child').remove();
     $('#returnflighttable th:last-child').hide();
+    $('#returnflighttable td:last-child').hide();
 
     var rowCount = $('#returnflighttable tr').length;
     if(rowCount === 1)

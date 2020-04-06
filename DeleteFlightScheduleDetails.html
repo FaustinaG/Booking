@@ -1,18 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Edit Flight Details</title>
+    <title>Delete Flight Details</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" crossorigin="anonymous">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
-    <link href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="FlightDetails.css">
@@ -35,26 +26,22 @@
         <label for = "FlightName">Flight Name : </label>
         <input class="form-control" type="text" id="FlightName" readonly/>
         <label for = "FromCity">From City : </label>
-        <input class="form-control" type="text" id="FromCity" />
+        <input class="form-control" type="text" id="FromCity" readonly/>
         <label for = "ToCity">To City : </label>
-        <input class="form-control" type="text" id="ToCity" />
+        <input class="form-control" type="text" id="ToCity" readonly/>
         <label for = "Departure">Departure : </label>
-        <div class="input-group date" id="Departure" data-target-input="nearest">
-          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Departure"/>
-          <span class="input-group-addon" data-target="#Departure" data-toggle="datetimepicker">
-              <span class="fa fa-calendar"></span>
-          </span>
-        </div>
+        <input class="form-control" type="text" id="Departure" readonly/>
         <label for = "Arrival">Arrival : </label>
-        <div class="input-group date" id="Arrival" data-target-input="nearest">
-          <input type="text" data-format="yyyy-MM-dd hh:mm:ss" class="form-control datetimepicker-input" data-target="#Arrival"/>
-          <span class="input-group-addon" data-target="#Arrival" data-toggle="datetimepicker">
-              <span class="fa fa-calendar"></span>
-          </span>
-        </div>
+        <input class="form-control" type="text" id="Arrival" readonly/>
+        <label for = "JourneyDate">Arrival : </label>
+        <input class="form-control" type="text" id="JourneyDate" readonly/>
+        <label for = "Price">Price : </label>
+        <input class="form-control" type="text" id="Price" readonly/>
+        <label for = "seats">Seat Availability : </label>
+        <input class="form-control" type="text" id="seats" readonly/>
         <br>
-        <button class="btn btn-primary" id="submit">Submit</button>
+        <button class="btn btn-primary" id="submit">Delete</button>
     </div>
-    <script src="EditFlightDetails.js"></script>
+    <script src="DeleteFlightScheduleDetails.js"></script>
    </body>
    </html>

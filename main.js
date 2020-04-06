@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.page-header').height($(window).height());
-    var UserId = sessionStorage.getItem('UserIdobject');
+    var accessId = sessionStorage.getItem('accessToken');
     var UserType = sessionStorage.getItem('UserTypeobject');
     $("#One-way").addClass('active');
     var returnDate = document.getElementById("return-date");
@@ -32,11 +32,13 @@ $(document).ready(function(){
     });
     $("#return-date").datepicker();
 
-    if(UserId>"0" && UserType === "0")
+    if(accessId!= null && UserType === "1")
     {
         $('#Login').hide();
+        $('#usertickethistory').hide();
+        $('#CancelTicket').hide();
     }
-    else if(UserId>"0" && UserType === "1")
+    else if(accessId!= null && UserType === "2")
     {
         $('#Login').hide();
         $('#flighthistory').hide();
@@ -105,7 +107,7 @@ $(document).ready(function(){
     $("#CancelTicket").click(function(){
         var Status = "Cancelled";
         sessionStorage.setItem( 'Statusobject', Status );
-        if(UserId>0)
+        if(accessId!=null)
         {
             window.location="CancelFlight.html";
         }
@@ -120,18 +122,19 @@ $(document).ready(function(){
 
   })
 
-  var timeout;
-  document.onmousemove = function(){
-    clearTimeout(timeout);
-    timeout = setTimeout(function(){
-        sessionStorage.clear();
-        window.location = "Index.html";
+//   var timeout;
+//   document.onmousemove = function(){
+//     clearTimeout(timeout);
+//     timeout = setTimeout(function(){
+//         sessionStorage.clear();
+//         accessId=null;
+//         window.location = "Index.html";
 
-    }, 600000);
-  }
+//     }, 600000);
+//   }
 
   $("#logoutuser").click(function(){
     sessionStorage.clear();
-    UserId=0;
+    accessId=null;
     window.location = "Index.html";
 })

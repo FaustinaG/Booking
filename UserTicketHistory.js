@@ -1,7 +1,14 @@
 $(document).ready(function(){
     var UserId = sessionStorage.getItem('UserIdobject');
-    var url ="http://localhost:60483/api/TicketDetail/GetTicketDetailHistory/";
-    $.getJSON(url+UserId,function(data){
+
+$.ajax({
+    url: 'http://localhost:60483/api/TicketDetail/GetTicketDetailHistory/'+UserId,
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer '
+            + sessionStorage.getItem("accessToken")
+    },
+    success: function (data) {
         var flight_data = [];   
     $.each(data, function(key, value){
          flight_data.push(value);
@@ -37,7 +44,21 @@ $(document).ready(function(){
     
     $('#flighttable th:last-child, #flighttable td:last-child').remove();
     $('#flighttable th:last-child, #flighttable td:last-child').remove();
-})
+    },
+    error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
+            }
+});
 
 $("#flighttable").click(function(e) {
     sessionStorage.setItem( 'TicketIdobject', e.target.id );

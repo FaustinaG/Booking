@@ -104,6 +104,7 @@ $.getJSON(url, function (data) {
     divContainer.appendChild(table);
     $('#flighttable th:last-child, #flighttable td:last-child').remove();
     $('#flighttable th:last-child').hide();
+    $('#flighttable td:last-child').hide();
     var passengers = document.getElementById("PassengersCount").value;
     sessionStorage.setItem( 'Passengersobject', passengers );
    
@@ -144,7 +145,7 @@ $("#flighttable").click(function(e) {
     })
 
     $("#getflights").click(function(){
-        $.getJSON(url,function(data){
+        $.getJSON(url, function(data){
             var FromCity = document.getElementById("From-City").value;
             if(FromCity.trim()=="")
         {
@@ -220,10 +221,13 @@ $("#flighttable").click(function(e) {
         divContainer.appendChild(table);
         $('#flighttable th:last-child, #flighttable td:last-child').remove();
         $('#flighttable th:last-child').hide();
+        $('#flighttable td:last-child').hide();
         var passengers = document.getElementById("PassengersCount").value;
         sessionStorage.setItem( 'Passengersobject', passengers );
         })
 
+
+        
         var UserId = sessionStorage.getItem('UserIdobject');
         $("#flighttable").click(function(e) {
             var Status = "Booking";

@@ -9,7 +9,7 @@ $(document).ready(function(){
         }
     var Password = document.getElementById("Password").value;
     var ConfirmPassword = document.getElementById("ConfirmPassword").value;
-    if(Password.trim() != "" && Password == ConfirmPassword) {
+    if(Password.trim() != "" && Password === ConfirmPassword) {
         if(Password.length < 5) {
           alert("Password must contain at least five characters!");
           return false;
@@ -49,15 +49,30 @@ $(document).ready(function(){
         TypeOfUser : "1"
     }
 
-        $.ajax({
-            url: "http://localhost:60483/api/UserLogin/PostUser",
-            type: "POST",
-            data: JSON.stringify(userdetail),
-            contentType: "application/json",
-            success: function (data) {
-                callback(data);
-            }
-        })
-        window.location="Login.html";
+        // $.ajax({
+        //     url: "http://localhost:60483/api/UserLogin/PostUser",
+        //     type: "POST",
+        //     data: JSON.stringify(userdetail),
+        //     contentType: "application/json",
+        //     success: function (data) {
+        //         callback(data);
+        //     }
+        // })
+        // window.location="Login.html";
+          $.ajax({
+              url: 'http://localhost:60483/api/account/register',
+              method: 'POST',
+              data: {
+                  email: UserName,
+                  password: Password,
+                  confirmPassword: ConfirmPassword
+              },
+              success: function () {
+                window.location="Login.html";
+              },
+              error: function () {
+                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+              }
+          });
     })
 })

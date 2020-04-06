@@ -20,6 +20,10 @@ $(document).ready(function(){
             url: "http://localhost:60483/api/Flight/PostFlight",
             type: "POST",
             data: JSON.stringify(flight),
+            headers: {
+                'Authorization': 'Bearer '
+                    + sessionStorage.getItem("accessToken")
+            },
             contentType: "application/json",
             success: function (data) {
                 var flightid = data.id;
@@ -27,6 +31,16 @@ $(document).ready(function(){
                 sessionStorage.setItem( 'FlightNameobject', document.getElementById("FlightName").value );
                 //callback(data);
                 window.location="AddFlightDetails.html";
+            },
+            error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                alert(errorThrow);
             }
         })
     }) 

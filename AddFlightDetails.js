@@ -37,38 +37,42 @@ $(document).ready(function(){
             alert("Please enter 'Return Date'");
             return false;
         }
-        var Price = document.getElementById("Price").value;
-        if(Price.trim()=="")
-        {
-            alert("Please enter 'Price'");
-            return false;
-        }
-        var seats = document.getElementById("seats").value;
-        if(seats.trim()=="")
-        {
-            alert("Please enter 'Seat Availability'");
-            return false;
-        }
+ 
         var flightdetail = {
             FromCity : document.getElementById("FromCity").value,
             ToCity : document.getElementById("ToCity").value,
             Departure : DepartureDate,
             Arrival : ReturnDate,
-            Price : document.getElementById("Price").value,
-            SeatAvailability : document.getElementById("seats").value,
             FlightId : flightid
         }
         $.ajax({
             url: "http://localhost:60483/api/FlightDetail/PostFlightDetail",
             type: "POST",
             data: JSON.stringify(flightdetail),
+            headers: {
+                'Authorization': 'Bearer '
+                    + sessionStorage.getItem("accessToken")
+            },
             contentType: "application/json",
             success: function (data) {
                 //callback(data);
-                window.location="FlightDetailHistory.html";
+                var flightdetailid = data.id;
+                sessionStorage.setItem( 'FlightDetailIdobject', flightdetailid );
+                //sessionStorage.setItem( 'FlightNameobject', document.getElementById("FlightName").value );
+                window.location="AddFlightScheduleDetails.html";
             },
-            error: function () {
-                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+            error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
             }
         })
     }) 

@@ -124,24 +124,32 @@ else
         PassengerCount : Passengers,
         TotalFare : OnwardTotalFare,
         CancellationFare : "0",
-        FlightDetailId : FlightId
+        FlightScheduleDetailId : FlightId
     }
 
         $.ajax({
             url: "http://localhost:60483/api/TicketDetail/PostTicketBooking",
             type: "POST",
             data: JSON.stringify(ticket),
+            headers: {
+                        'Authorization': 'Bearer '
+                            + sessionStorage.getItem("accessToken")
+                    },
             contentType: "application/json",
             success: function (data) {
                 var ticketid = data.id;
                 var history = {
-                    UserLoginId : UserId,
+                    UserId : UserId,
                     TicketDetailId : ticketid
                 }
                     $.ajax({
                         url: "http://localhost:60483/api/UserTicketHistory/PostUserTicketHistory",
                         type: "POST",
                         data: JSON.stringify(history),
+                        headers: {
+                            'Authorization': 'Bearer '
+                                + sessionStorage.getItem("accessToken")
+                        },
                         contentType: "application/json",
                         success: function (data) {
                             if(!(ReturnFlightId>0))
@@ -149,14 +157,34 @@ else
                                 window.location="Result.html";
                             }
                         },
-                        error: function () {
-                            alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
-                        }
+                        error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
+            }
                     })
                 
             },
-            error: function () {
-                alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+            error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
             }
         })
         if(ReturnFlightId>0)
@@ -166,30 +194,64 @@ else
                 PassengerCount : Passengers,
                 TotalFare : ReturnTotalFare,
                 CancellationFare : "0",
-                FlightDetailId : ReturnFlightId
+                FlightScheduleDetailId : ReturnFlightId
             }
         
                 $.ajax({
                     url: "http://localhost:60483/api/TicketDetail/PostTicketBooking",
                     type: "POST",
                     data: JSON.stringify(returnticket),
+                    headers: {
+                        'Authorization': 'Bearer '
+                            + sessionStorage.getItem("accessToken")
+                    },
                     contentType: "application/json",
                     success: function (data) {
                         var ticketid = data.id;
                         var returnhistory = {
-                            UserLoginId : UserId,
+                            UserId : UserId,
                             TicketDetailId : ticketid
                         }
                             $.ajax({
                                 url: "http://localhost:60483/api/UserTicketHistory/PostUserTicketHistory",
                                 type: "POST",
                                 data: JSON.stringify(returnhistory),
+                                headers: {
+                                    'Authorization': 'Bearer '
+                                        + sessionStorage.getItem("accessToken")
+                                },
                                 contentType: "application/json",
                                 success: function (data) {
                                     window.location="Result.html";
-                                }
+                                },
+                                error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
+            }
                             })
-                    }
+                    },
+                    error: function(xhr, textStatus, errorThrow)
+            {
+                if(errorThrow==='Unauthorized')
+                {
+                    sessionStorage.clear();
+                    accessId=null;
+                    window.location = "Index.html";
+                }
+                else
+                {
+                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                }
+            }
                 })
         }
 

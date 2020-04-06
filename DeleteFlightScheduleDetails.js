@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var flighdetailId = sessionStorage.getItem('FlightDetailIdobject');
-    var url = "http://localhost:60483/api/FlightDetail/GetFlightsById/";
+    var flighdetailId = sessionStorage.getItem('FlightScheduleDetailIdobject');
+    var url = "http://localhost:60483/api/FlightScheduleDetail/GetFlightScheduleDetailsById/";
     $.getJSON(url+flighdetailId, function (data) {
         var flight_data = [];   
     $.each(data, function(key, value){
@@ -25,6 +25,10 @@ $(document).ready(function(){
             {
                 document.getElementById("Arrival").value = flight_data[i][col[j]];
             }
+            else if(col[j] === "Journey Date")
+            {
+                document.getElementById("JourneyDate").value = flight_data[i][col[j]];
+            }
             else if(col[j] === "From City")
             {
                 document.getElementById("FromCity").value = flight_data[i][col[j]];
@@ -48,59 +52,19 @@ $(document).ready(function(){
     }
     } 
 })
-
-var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","Mangalore","Hyderabad"];
-
-    $("#FromCity").autocomplete({
-    source: countries
-    });
-    $("#ToCity").autocomplete({
-        source: countries
-        });
     $("#submit").click(function(){
-        var FromCity = document.getElementById("FromCity").value;
-            if(FromCity.trim()=="")
-        {
-            alert("Please enter 'From' airport");
-            return false;
-        }
-            var ToCity = document.getElementById("ToCity").value;
-            if(ToCity.trim()=="")
-        {
-            alert("Please enter 'To' airport");
-            return false;
-        }
-        var DepartureDate = $("#Departure").find("input").val();
-            if(DepartureDate.trim()=="")
-        {
-            alert("Please enter 'Departure Date'");
-            return false;
-        }
-        var ReturnDate = $("#Arrival").find("input").val();
-            if(ReturnDate.trim()=="")
-        {
-            alert("Please enter 'Return Date'");
-            return false;
-        }
-        var flight = {
-            Id : flighdetailId,
-            FromCity : document.getElementById("FromCity").value,
-            ToCity : document.getElementById("ToCity").value,
-            Departure : DepartureDate,
-            Arrival : ReturnDate
-        }
         $.ajax({
-            url: "http://localhost:60483/api/FlightDetail/PutFlightdetail",
-            type: "PUT",
-            data: JSON.stringify(flight),
+            url: "http://localhost:60483/api/FlightScheduleDetail/DeleteFlightScheduleDetail/"+flighdetailId,
+            type: "DELETE",
             headers: {
                 'Authorization': 'Bearer '
                     + sessionStorage.getItem("accessToken")
             },
+            //data: JSON.stringify(flight),
             contentType: "application/json",
             success: function (data) { 
-                alert("Data Saved Successfully");
-                window.location="FlightDetailHistory.html";
+                alert("Data deleted successfully");
+                window.location="FlightScheduleDetailHistory.html";
             },
             error: function(xhr, textStatus, errorThrow)
             {
@@ -112,7 +76,7 @@ var countries = ["Chennai","Delhi","Coimbatore","Bangalore","Vellore","Cochin","
                 }
                 else
                 {
-                    alert("An error occured while processing your request. Please contact program vendor if the problem persist.");
+                    alert(errorThrow);
                 }
             }
         })
